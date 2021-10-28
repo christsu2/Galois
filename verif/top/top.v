@@ -19,14 +19,6 @@ reg [7:0] K, tmp, dataIn;
 reg[7:0] Test[255:0]; 
 integer i,j; 
  
-initial
-begin
-$dumpon;
-$dumpfile("x.dmp");
-$dumpvars;
-end
-
-
 reg [7:0] dataI;
 wire[7:0] dataO;
 reg [8:0] adrs;
@@ -97,8 +89,8 @@ initial
 	    @(posedge xin) #2 ;
             begin
 	       eccStart = 0;
-	       if(i == 171) flashDo = 0;
-	 //      else if(i == 171) flashDo = 0;
+	       if(i == 12) flashDo = 0;
+	       else if(i == 171) flashDo = 0;
 	      // else if(i == 170) flashDo = 0;
 	       else flashDo = flashMem[i];
             end 

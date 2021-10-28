@@ -1,0 +1,127 @@
+Magic 271485
+Revision 1.0
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 56 54 988 771 139 105
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "C:\Lightning\rtlDev\syndrome8" "x.dmp" "x.dmp.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 3
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 0.000000 1941985.000000
+cursor 10.000000
+marker 209155.000000
+
+; user define markers
+; userMarker time_pos marker_name
+; visible top row signal index
+top 18
+; marker line index
+markerPos 17
+
+; Run Time Signal and Member
+; addRunTimeSig 
+
+; digital to analog list
+; allDtoA sig_name vv0 vv1 vvz vvx org_signal_name
+
+; analog to digital list
+; allAtoD sig_name low_threshold high_threshold member_sig_name
+
+; logical expression list
+; addExprSig expr_name expression_string
+
+; variable signals list
+; addVariable signal 
+
+; analog expression list
+; addAnaExprSig expr_name expression_string
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "G1"
+activeDirFile "C:\Lightning\rtlDev\syndrome8" "x.dmp.fsdb"
+addSignal -h 15 /top/skip
+addSignal -h 15 /top/u_syndrome/clk
+addSignal -h 15 -holdScope reset
+addSignal -h 15 -holdScope running
+addSignal -h 15 -holdScope encoding
+addSignal -h 15 -holdScope endSegment
+addSignal -h 15 -UNSIGNED -holdScope dataI[7:0]
+addSignal -h 15 -holdScope valid
+addSignal -h 15 -holdScope blanking
+addSignal -h 15 -UNSIGNED -holdScope s0[7:0]
+addSignal -h 15 -UNSIGNED -holdScope s1[7:0]
+addSignal -h 15 -UNSIGNED -holdScope s2[7:0]
+addSignal -h 15 -UNSIGNED -holdScope s3[7:0]
+addSignal -h 15 -holdScope synReady
+addSignal -h 15 -UNSIGNED -holdScope dataO[7:0]
+addSignal -h 15 -UNSIGNED -holdScope state[2:0]
+addSignal -h 15 -holdScope delayValid
+addSignal -h 15 -holdScope validQ[0]
+addSignal -h 15 -holdScope valid
+addSignal -h 15 -holdScope validQ[1]
+addGroup "G2"
+addSignal -h 15 /top/u_reedSolomon/synReady
+addGroup "G3"
+addSignal -h 15 -UNSIGNED /top/u_reedSolomon/si0[7:0]
+addSignal -h 15 -UNSIGNED -holdScope si1[7:0]
+addSignal -h 15 -UNSIGNED -holdScope si2[7:0]
+addSignal -h 15 -UNSIGNED -holdScope si3[7:0]
+addGroup "G4"
+addGroup "G5"
+addSignal -h 15 /top/u_reedSolomon/clk
+addSignal -h 15 -holdScope reset
+addSignal -h 15 -UNSIGNED -holdScope si0[7:0]
+addSignal -h 15 -UNSIGNED -holdScope si1[7:0]
+addSignal -h 15 -UNSIGNED -holdScope si2[7:0]
+addSignal -h 15 -UNSIGNED -holdScope si3[7:0]
+addSignal -h 15 -holdScope synReady
+addSignal -h 15 -holdScope logSearch
+addSignal -h 15 -UNSIGNED -holdScope romAdrs[7:0]
+addSignal -h 15 -UNSIGNED -holdScope romData[7:0]
+addSignal -h 15 -UNSIGNED -holdScope RSresults[33:0]
+addSignal -h 15 -holdScope RSdone
+addGroup "G6"
+addSignal -h 15 /top/u_reedSolomon/synReady
+addSignal -h 15 -UNSIGNED -holdScope state[4:0]
+addGroup "G7"
+addSignal -h 15 /top/u_syndrome/valid
+addSignal -h 15 -UNSIGNED /top/u_reedSolomon/nxtState[4:0]
+addGroup "G8"
+addGroup "G9"
+addGroup "G10"
+
+; grid status
+; gridSignal signal_name
+; gridEdge 0 | 1
+; gridCount
+; gridCycleTime from to cycleTime
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+

@@ -35,10 +35,13 @@ reg [7:0]    s0, s1, rd, ra, rb, rc;
 reg [7:0]    rdd, rad, rbd, rcd;
 reg [1:0]    PSW, PSWd;
 reg          ldPSW, ldrd, ldra, ldrb, ldrc;
-wire [7:0]    romDataQ = romData;
+reg [7:0]    romDataQ;
 
 wire [33:0] RSresults = {PSW[1:0],rd, ra, rb, rc}; 
 
+always @(posedge clk or negedge reset)
+	if(!reset)  romDataQ <= #D 0;
+	else        romDataQ <= #D  romData;
  	
 always @(posedge clk or negedge reset)
 	if(!reset) s0 <= #D 0;
@@ -100,6 +103,7 @@ always @(
 	or rb
 	or rc
 	or rd
+        or romData
         or romDataQ
 	
 	)
