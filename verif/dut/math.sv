@@ -123,7 +123,7 @@ end
 endfunction  
 
 function logic [6:0] cub_rt(input logic [7:0] i);
-   if(i[0] == 0) return 0; else //You only need odd quadrature root, see paper
+//   if(i[0] == 0) return 0; else //You only need odd quadrature root, see paper
    case(i) //cubic root table
         1: cub_rt =   1;
         7: cub_rt =  97;

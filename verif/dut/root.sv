@@ -57,13 +57,23 @@ endfunction
 */
 function triplet_t Cubic_root( triplet_t sigma); 
 
-begin 
+ logic [7:0] term1, term2, C, V, U ;
+ triplet_t   T, X;
 
-sigma[0] = 3;   
+ term2 = mul(sigma[1],sigma[2]) ^ sigma[0];
+ term1 = Square(sigma[2]) ^ sigma[1]; 
+ C     = mul(mul(Square(term1), term1), inv(Square(term2)));
+ V     = QuadTable(C) | 1;
+ U     = mul(term2,V);
+ T[0]  = cub_rt(U);
+ T[1]  = mul(T[0], exp[85]);
+ T[2]  = mul(T[1], exp[85]);
+ X[0]  = T[0] ^ sigma[2] ^ mul(term2, inv(T[0]));
+ X[1]  = T[1] ^ sigma[2] ^ mul(term2, inv(T[1]));
+ X[2]  = T[2] ^ sigma[2] ^ mul(term2, inv(T[2]));
 
-return sigma;
-  
-end  
+return X;   
+
 endfunction
 
 
