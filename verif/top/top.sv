@@ -1,5 +1,7 @@
 `timescale 1 ns/100 ps
 
+typedef logic [7:0] triplet_t[3]; 
+
 module top; 
  
     /*-----------------------------------------------------------------------*/
@@ -35,6 +37,37 @@ wire       sramWE;
 wire [7:0] flashDi;
 reg  [7:0] flashDo;
 wire       flashDataValid;
+
+typedef struct packed {
+logic unsigned [7:0] data;
+logic unsigned [7:0] min;
+logic [7:0] occur;
+} cubic_root_t;
+
+
+
+initial begin
+cubic_root_t [256] cub_root = 0;
+logic [7:0]        value;
+for(int i = 0; i < 256; i++)begin
+	value = mul(Square(i), i);
+	cub_root[value].data = i[7:0];
+	if(cub_root[value].occur == 0) cub_root[value].min = 255;
+	cub_root[value].occur += 1;
+	if(cub_root[value].min >= cub_root[value].data) cub_root[value].min = cub_root[value].data;
+end	
+
+for(int i = 0; i < 256;i++) 
+    $display("[%03d] ->  %1d;  %3d;  %3d", i, cub_root[i].occur, cub_root[i].min, cub_root[i].data);
+
+$display("function logic [6:0] cub_rt(input logic [7:0] i);"); 
+$display("   case(i) //cubic root table");
+for(int i = 0; i < 256;i++) 
+   if(cub_root[i].occur == 3) $display("      %3d: cub_rt = %3d;", i, cub_root[i].min);
+$display("      default: cub_rt = 0;  //cubic root not exist");       	
+$display("   endcase");
+$display("endfunction");
+end	
 
 initial 
 	
