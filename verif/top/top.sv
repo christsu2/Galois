@@ -44,7 +44,7 @@ logic unsigned [7:0] min;
 logic [7:0] occur;
 } cubic_root_t;
 
-
+`ifdef CUBIC_ROOT
 
 initial begin
 cubic_root_t [256] cub_root = 0;
@@ -68,9 +68,36 @@ $display("      default: cub_rt = 0;  //cubic root not exist");
 $display("   endcase");
 $display("endfunction");
 end	
+`endif
+
+initial begin
+
+triplet_t sigma, X;
+logic [7:0] value;
+
+for(int i = 0; i <256; i++) begin
+   value = cub_rt(i[7:0]); 
+   if(value != 0 && mul(Square(value),value) != i[7:0])
+      $display("Cubic root not match at %3d", i);
+end
+
+sigma[0] = 20;
+sigma[1] = 205;
+sigma[2] = 114;
+
+X = Cubic_root(sigma);
+ 
+$display(" result = %3d", Cubic_poly(sigma, X[2])); 
+
+X = Quad_root(sigma);
+
+$display(" result = %3d", Quad_poly(sigma, X[0])); 
+
+
+end
 
 initial 
-	
+
 	begin 
 
  

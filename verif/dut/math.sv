@@ -75,6 +75,7 @@ input [7:0] i;
 
 begin 
 
+         if(i[5] == 1) $display("Quad Table failed");
          QuadTable[0] = ~i[5];
          QuadTable[1] = i[4]^i[2]^i[0];
          QuadTable[2] = i[6]^i[4]^i[3]^i[0];
