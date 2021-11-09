@@ -12,13 +12,14 @@
 //
 //                              X1 = sigma1 Y1,   X2 = sigma1 Y2
 */ 
-function [7:0] Quad_root;
-input [7:0] k;
-begin
+function triplet_t Quad_root(triplet_t sigma);
 
-return 0;
+logic [7:0] C, Y;
+   C = mul(sigma[0], inv(Square(sigma[1])));
+   Y = QuadTable(C);
+   Quad_root[0] = mul(sigma[1], Y);
+   Quad_root[1] = mul(sigma[1], Y^1);
 
-end
 endfunction 
 /*
 //                     2. Solve sigma(X) = X^3 + (sigma2)X^2 + (sigma1)X + sigma0 = 0
@@ -60,8 +61,9 @@ function triplet_t Cubic_root( triplet_t sigma);
  logic [7:0] term1, term2, C, V, U ;
  triplet_t   T, X;
 
- term2 = mul(sigma[1],sigma[2]) ^ sigma[0];
  term1 = Square(sigma[2]) ^ sigma[1]; 
+ term2 = mul(sigma[1],sigma[2]) ^ sigma[0];
+
  C     = mul(mul(Square(term1), term1), inv(Square(term2)));
  V     = QuadTable(C) | 1;
  U     = mul(term2,V);
