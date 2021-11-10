@@ -32,7 +32,7 @@ compile:
 		-debug_access+pp -debug_access+all \
 		-o ${OUT}/vcs_simv \
 		-timescale=1ns/10ps -licqueue \
-		$(VERIF)/top/top.v \
+		$(VERIF)/top/top.sv \
 		-f $(VERIF)/dut/dut.f 
 
 run:
