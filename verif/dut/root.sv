@@ -79,6 +79,8 @@ return X;
 
 endfunction
 
+//Check root by plug into Cubic polynominal equation
+
 function logic [7:0] Cubic_poly( triplet_t sigma, logic [7:0] x); 
 
  logic [7:0] term1;
@@ -88,6 +90,8 @@ function logic [7:0] Cubic_poly( triplet_t sigma, logic [7:0] x);
 return term1;   
 
 endfunction
+
+//Check root by plug into Quadratic polynominal equation
 
 function logic [7:0] Quad_poly( triplet_t sigma, logic [7:0] x); 
 
